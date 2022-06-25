@@ -39,8 +39,9 @@ gap:15px;
     margin-bottom: 30px;
 }
 
-/* & input {
-    height:15px;
+/* & input::placeholder {
+    height:10px;
+    color:pink
     margin:auto;
 } */
 `;
@@ -53,8 +54,17 @@ const Para = styled.p`
 `;
 
 
+
+const singupData = {
+    name:'',
+    username:'',
+    password:''
+}
+
+
 const Login = () => {
     const [account,setAccount]= useState('singup')
+    const [signupDetails, setSignupDetails] = useState(singupData);
     const accountToggle = ()=>{
         if(account==='signup'){
             setAccount('login')
@@ -65,7 +75,7 @@ const Login = () => {
     }
 
     const inpChange = (e)=>{
-    console.log(e.target.value)
+    console.log({...singupData,[e.target.name] : e.target.value})
     }
     return (
     
@@ -83,9 +93,9 @@ const Login = () => {
 
 
         <InputBx>
-            <TextField variant='standard' label="ENTER NAME" onChange={(e)=>inpChange(e)}/>
-            <TextField variant='standard' label="ENTER USER NAME" onChange={(e)=>inpChange(e)}/>
-            <TextField variant='standard' label='ENTER PASSWORD' onChange={(e)=>inpChange(e)}/>
+            <TextField label="ENTER NAME" name='name' onChange={(e)=>inpChange(e)}/>
+            <TextField  label="ENTER USER NAME" name='username' onChange={(e)=>inpChange(e)}/>
+            <TextField  label='ENTER PASSWORD'name='password' onChange={(e)=>inpChange(e)}/>
             <Button style={{backgroundColor:'seagreen'}}variant='contained'>Signup</Button>
             <Para>OR</Para>
             <Button variant='contained'onClick={()=>accountToggle()}>Already have an account</Button>
@@ -94,8 +104,8 @@ const Login = () => {
         :
 
         <InputBx>
-            <TextField variant='standard' label="ENTER USER NAME"/>
-            <TextField variant='standard' label='ENTER PASSWORD'/>
+            <TextField label="ENTER USER NAME"/>
+            <TextField label='ENTER PASSWORD'/>
             <Button style={{backgroundColor:'seagreen'}}variant='contained'>Login</Button>
             <Para>OR</Para>
             <Button variant='contained' onClick={()=>accountToggle()}>Crete an account</Button>
