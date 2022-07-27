@@ -1,8 +1,12 @@
 import express from "express";
 import Data from "./database/data.js";
-import "dotenv/config"
+import dotenv from "dotenv";
+import Router from './routes/route.js'
+
+dotenv.config()
 const app = express()
 const PORT = 8080;
+app.use('/',Router);
 
 
 app.listen(PORT,()=>{

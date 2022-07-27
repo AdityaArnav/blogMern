@@ -55,7 +55,7 @@ const Para = styled.p`
 
 
 
-const singupData = {
+const singupFrstData = {
     name:'',
     username:'',
     password:''
@@ -64,7 +64,7 @@ const singupData = {
 
 const Login = () => {
     const [account,setAccount]= useState('singup')
-    const [signupDetails, setSignupDetails] = useState(singupData);
+    const [signupDetails, setSignupDetails] = useState(singupFrstData);
     const accountToggle = ()=>{
         if(account==='signup'){
             setAccount('login')
@@ -75,7 +75,11 @@ const Login = () => {
     }
 
     const inpChange = (e)=>{
-    console.log({...singupData,[e.target.name] : e.target.value})
+    console.log(setSignupDetails({...signupDetails,[e.target.name] : e.target.value}))
+    }
+
+    const userSignup=()=>{
+
     }
     return (
     
@@ -95,8 +99,8 @@ const Login = () => {
         <InputBx>
             <TextField label="ENTER NAME" name='name' onChange={(e)=>inpChange(e)}/>
             <TextField  label="ENTER USER NAME" name='username' onChange={(e)=>inpChange(e)}/>
-            <TextField  label='ENTER PASSWORD'name='password' onChange={(e)=>inpChange(e)}/>
-            <Button style={{backgroundColor:'seagreen'}}variant='contained'>Signup</Button>
+            <TextField  label='ENTER PASSWORD' name='password' onChange={(e)=>inpChange(e)}/>
+            <Button style={{backgroundColor:'seagreen'}}variant='contained' onClick={()=>userSignup()}>Signup</Button>
             <Para>OR</Para>
             <Button variant='contained'onClick={()=>accountToggle()}>Already have an account</Button>
         </InputBx>
